@@ -37,21 +37,15 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         if(message != null && message.hasText()) {
-            switch (message.getText()) {
-                case "Привет":
-                    sendMsg(message, "Привет, Я показываю погоду.");
-                    break;
-                case "Как тебя зовут":
-                    sendMsg(message, "Меня зовут Паша.");
-                    break;
-                default:
-                    sendMsg(message, "У меня 2 функции:\n" +
-                            "Привет\n" +
-                            "Как тебя зовут");
-                    break;
-            }
-            if (message.equals("Привет")) {
+            String text = message.getText();
+            if ("Привет".equals(text)) {
                 sendMsg(message, "Привет, Я показываю погоду.");
+            } else if ("Как тебя зовут".equals(text)) {
+                sendMsg(message, "Меня зовут Паша.");
+            } else {
+                sendMsg(message, "У меня 2 функции:\n" +
+                        "Привет\n" +
+                        "Как тебя зовут");
             }
         }
     }
